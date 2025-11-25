@@ -1,433 +1,249 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kim Quỳnh - CV Lunar Data Terminal | Truyền Thông Đa Phương Tiện</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Minh Thành - CV Dark Mode</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
+    <style>
+        /* --- CSS cho Phong cách Dark Mode "Ngầu" --- */
 
-<style>
-/* ----- VARIABLES & RESET ----- */
-:root {
-    --bg-night: #000f1c; /* Nền xanh đêm đậm */
-    --bg-cv-trans: rgba(255, 255, 255, 0.15); /* Nền CV trong suốt nhẹ */
-    --bg-menu: rgba(0, 15, 28, 0.9); /* Nền Menu mờ hơn */
-    --text-dark: #2c3e50; /* Chữ đậm trên nền CV (ít dùng) */
-    --accent-neon: #ff8c00; /* Thay Xanh Neon bằng Cam Sáng/Neon ấm cho Truyền thông */
-    --accent-moon: #f0f4c3; /* Trắng Ánh Trăng */
-    --header-font: 'Cinzel', serif;
-    --body-font: 'Source Sans Pro', sans-serif;
-}
+        /* Thiết lập nền cho toàn bộ trang web (Body) */
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+            /* NỀN TỐI CHỦ ĐẠO */
+            background-color: #1a1a2e; /* Màu xanh đen đậm */
+            color: #e0e0e0; /* Chuyển màu chữ chính sang xám sáng */
+            
+            /* Căn giữa CV trên màn hình */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
 
-* {margin:0; padding:0; box-sizing:border-box;}
-body {
-    font-family: var(--body-font);
-    background: var(--bg-night);
-    color: var(--text-dark);
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-.night, .navbar { display: none; }
+        /* Thiết lập cho khung chứa nội dung CV (.container) */
+        .container {
+            /* Nền container tối hơn một chút so với body */
+            background-color: #16213e; 
+            
+            /* Đổ bóng màu tối */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 850px;
+            width: 100%;
+            border: 1px solid #2a3a5a; /* Viền nhẹ để tách biệt */
+            box-sizing: border-box;
+        }
 
-/* ------------------------------------- */
-/* ----- 1. HIỆU ỨNG BẦU TRỜI ĐÊM ----- */
-/* ------------------------------------- */
-.stars {
-    position: fixed;
-    top: 0; left: 0;
-    width: 200vw;
-    height: 200vh;
-    pointer-events: none;
-    z-index: 0; 
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
-}
-.stars-small {
-    width: 2px; height: 2px;
-    background: transparent;
-    box-shadow: 
-        100px 30px #fff, 200px 50px #fff, 350px 80px #fff, 450px 100px #fff, 
-        550px 150px #fff, 700px 200px #fff, 850px 250px #fff, 1000px 300px #fff,
-        150px 400px #fff, 300px 450px #fff, 600px 500px #fff, 900px 550px #fff,
-        100px 600px #fff, 500px 700px #fff, 800px 800px #fff, 250px 900px #fff,
-        1300px 150px #fff, 1500px 700px #fff, 800px 1300px #fff, 1700px 500px #fff; 
-    animation: twinkle 500s linear infinite;
-    opacity: 0.7;
-}
+        /* --- Điều chỉnh các thành phần bên trong cho nền tối --- */
 
-/* Biểu tượng Trăng lưỡi liềm */
-.moon-crescent {
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    font-size: 5em;
-    color: var(--accent-moon); /* Màu Ánh Trăng */
-    filter: drop-shadow(0 0 15px var(--accent-moon));
-    z-index: 1;
-    opacity: 0.7;
-    animation: pulse 5s infinite alternate;
-}
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 0.7; }
-    100% { transform: scale(1.05); opacity: 0.9; }
-}
-/* Sao băng */
-.shooting_star {
-    position: absolute;
-    width: 2px;
-    height: 100px;
-    /* Dùng màu Cam Neon cho Sao Băng */
-    background: linear-gradient(-45deg, var(--accent-neon), rgba(255,255,255,0));
-    border-radius: 999px;
-    filter: drop-shadow(0 0 4px var(--accent-neon));
-    animation: tail 2s ease-in infinite, falling 2s linear infinite;
-    opacity: 0;
-}
-.shooting_star:nth-child(1) { top: 20%; left: 60%; animation-delay: 0s; }
-.shooting_star:nth-child(2) { top: 10%; left: 20%; animation-delay: 1.5s; }
-.shooting_star:nth-child(3) { top: 80%; left: 40%; animation-delay: 3s; }
-@keyframes tail {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-@keyframes falling {
-    from { transform: translate3d(0,0,0); }
-    to { transform: translate3d(-500px,500px,0); }
-}
+        /* Tiêu đề chính */
+        h1 { 
+            color: #fff; 
+            margin-bottom: 10px; 
+            font-size: 2.5em;
+        }
+        .specialize { 
+            color: #a0a0a0; 
+            font-weight: 500; 
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
 
-/* -------------------------------------- */
-/* ----- 2. CV CONTAINER & MENU SIDEBAR ----- */
-/* -------------------------------------- */
-.cv-wrap {
-    display: flex;
-    padding: 30px;
-    position: relative;
-    z-index: 10;
-}
+        /* Các tiêu đề mục lớn (GIỚI THIỆU, KINH NGHIỆM,...) */
+        h2 { 
+            /* Màu xanh mint tạo điểm nhấn công nghệ */
+            color: #4ecca3; 
+            border-bottom: 2px solid #33476a; 
+            padding-bottom: 10px; 
+            margin-top: 30px;
+            text-transform: uppercase;
+            font-size: 1.5em;
+        }
 
-/* Menu cố định bên trái */
-.menu-sidebar {
-    width: 200px;
-    min-height: calc(100vh - 60px);
-    position: fixed;
-    top: 30px;
-    left: 30px;
-    background: var(--bg-menu);
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.3); /* Shadow Cam Neon */
-    border-radius: 8px;
-    padding: 20px 10px;
-    border: 1px solid var(--accent-neon);
-}
-.menu-item {
-    padding: 15px 10px;
-    color: var(--accent-moon);
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-}
-.menu-item:hover, .menu-item.active {
-    background: rgba(255, 140, 0, 0.1); /* Hover Cam Neon */
-    color: var(--accent-neon);
-    padding-left: 20px;
-    border-left: 3px solid var(--accent-moon);
-}
+        /* Tiêu đề kinh nghiệm/dự án */
+        .item h4 { 
+            color: #fff; 
+            margin-bottom: 5px; 
+            font-size: 1.1em;
+        }
 
-/* CV Container Chính (Nằm giữa) */
-.cv-container {
-    margin-left: 230px; 
-    width: calc(100% - 230px);
-    max-width: 1000px;
-    background: var(--bg-cv-trans); 
-    border-radius: 15px;
-    overflow: hidden;
-    backdrop-filter: blur(10px); /* Hiệu ứng MỜ */
-    border: 1px solid rgba(255, 140, 0, 0.5); /* Border Cam Neon */
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
-    display: flex;
-}
+        /* Nội dung và mô tả */
+        .intro p, .des, .skills ul li { 
+            color: #cdd1d9; /* Màu chữ nội dung sáng */
+            line-height: 1.6;
+        }
+        .intro strong {
+            color: #4ecca3; /* Làm nổi bật các từ khóa */
+        }
 
-/* Content Area cho các section được chuyển đổi */
-.content-area {
-    padding: 40px;
-    width: 100%;
-}
-.content-section {
-    display: none; 
-    animation: fadeIn 0.8s ease-out;
-}
-.content-section.active {
-    display: block;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        /* Thông tin liên hệ */
+        ul.contact { 
+            list-style: none; 
+            padding: 0; 
+            line-height: 1.8; 
+        }
+        ul.contact li span { 
+            font-weight: bold; 
+            margin-right: 10px; 
+            color: #4ecca3; /* Màu điểm nhấn cho nhãn */ 
+        }
 
-/* Ảnh đại diện (Thêm vào bố cục này) */
-.profile-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-.avatar-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 20px;
-    border: 3px solid var(--accent-neon);
-    box-shadow: 0 0 10px var(--accent-neon);
-}
-.main-info h1 {
-    font-family: var(--header-font);
-    font-size: 2.5em; /* Giảm size để cân đối */
-    color: var(--accent-moon); 
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-.main-info .specialize {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: var(--accent-neon);
-}
+        /* Thời gian và địa điểm */
+        .time { 
+            font-size: 0.9em; 
+            color: #888; 
+            margin-bottom: 10px; 
+            font-style: italic;
+            display: flex; /* Dùng flex để sắp xếp thời gian và trường */
+            justify-content: space-between;
+        }
+        .time span:last-child {
+            color: #a0a0a0; /* Màu hơi sáng hơn cho tên trường */
+        }
+        .location, .web {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 5px;
+        }
 
-/* Tiêu đề Section & Nội dung */
-.section-block h2 {
-    font-family: var(--header-font);
-    font-size: 1.6em;
-    color: var(--accent-moon); 
-    border-left: 5px solid var(--accent-neon);
-    text-shadow: 0 0 2px var(--accent-neon);
-}
-.content-section p, .content-section li, .contact-list li {
-    color: var(--accent-moon); 
-    font-size: 0.95em;
-}
-.content-section strong {
-    color: var(--accent-neon); 
-}
-.contact-list {
-    list-style: none;
-    padding-left: 0;
-}
-.contact-list li {
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-.contact-list i {
-    color: var(--accent-neon);
-    margin-right: 10px;
-}
+        /* Kỹ năng và Dự án (dạng list) */
+        .skills ul, .project .item ul {
+            list-style: none;
+            padding: 0;
+            margin-left: 15px;
+        }
+        .skills ul li:before, .project .item ul li:before {
+            content: "\f058"; /* Icon checkmark từ Font Awesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: #4ecca3;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
 
-/* Kinh nghiệm/Dự án (Khối module) */
-.experience-item {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2); 
-    border: 1px solid var(--accent-neon);
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); /* Shadow Cam Neon */
-}
-.experience-item h3 {
-    color: var(--accent-neon);
-}
-.experience-item .date {
-    color: var(--accent-moon);
-}
-li::before {
-    content: '\f0da';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    color: var(--accent-neon);
-}
-</style>
+        /* Avatar */
+        .avatar {
+            text-align: center;
+        }
+        .avatar img { 
+            /* Lưu ý: Đường dẫn ảnh cần được điều chỉnh nếu bạn chạy file này riêng lẻ */
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid #4ecca3; /* Viền avatar màu nổi bật */
+            box-shadow: 0 0 15px rgba(78, 204, 163, 0.4); /* Đổ bóng phát sáng nhẹ */
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="stars">
-    <div class="stars-small"></div>
-    <div class="shooting_star"></div>
-    <div class="shooting_star"></div>
-    <div class="shooting_star"></div>
-</div>
-<div class="moon-crescent"><i class="fas fa-moon"></i></div>
+    <div class="container">
 
-<div class="cv-wrap">
-    
-    <nav class="menu-sidebar">
-        <div class="menu-item active" data-target="profile"><i class="fas fa-satellite-dish"></i> HỒ SƠ & MỤC TIÊU</div>
-        <div class="menu-item" data-target="experience"><i class="fas fa-lightbulb"></i> KINH NGHIỆM & DỰ ÁN</div>
-        <div class="menu-item" data-target="skills"><i class="fas fa-pen-nib"></i> KỸ NĂNG SÁNG TẠO</div>
-        <div class="menu-item" data-target="education"><i class="fas fa-school"></i> HỌC VẤN & LIÊN HỆ</div>
-    </nav>
+        <div class="avatar">
+            <img src="./assets/images/thành.jpg" alt="Ảnh cá nhân">
+        </div>
 
-    <div class="cv-container">
-        <div class="content-area">
-            
-            <div class="profile-info">
-                <img src="./assets/images/quỳnh.jpg" alt="Ảnh cá nhân Kim Quỳnh" class="avatar-img">
-                <div class="main-info">
-                    <h1>KIM QUỲNH</h1>
-                    <div class="specialize">CÔNG NGHỆ TRUYỀN THÔNG ĐA PHƯƠNG TIỆN</div>
+        <div class="name">
+            <h1>Trần Minh Thành</h1>
+            <div class="specialize">Front-End Developer | Cybersecurity Student</div>
+
+            <ul class="contact">
+                <li><span><i class="fas fa-phone"></i> Phone:</span> 0983791120</li>
+                <li><span><i class="fas fa-envelope"></i> Email:</span> tranminhthanh1797@gmail.com</li>
+                <li><span><i class="fas fa-globe"></i> Website:</span> dhv.edu.vn</li>
+                <li><span><i class="fas fa-map-marker-alt"></i> Địa điểm:</span> HCMC - Việt Nam</li>
+                <li><span><i class="fas fa-birthday-cake"></i> Ngày sinh:</span> 2/3/2007</li>
+                <li><span><i class="fas fa-graduation-cap"></i> Trường:</span> Đại học Hùng Vương TP.HCM</li>
+            </ul>
+        </div>
+
+        <div class="intro">
+            <h2>GIỚI THIỆU BẢN THÂN</h2>
+            <p>
+                Tôi là <strong>Trần Minh Thành</strong>, sinh viên Công nghệ Thông Tin với định hướng chuyên sâu về 
+                <strong>An ninh mạng</strong>. Tôi có tư duy logic, đam mê nghiên cứu và khám phá lập Trình.
+            </p>
+            <p>
+                Trong quá trình học, tôi đã rèn luyện khả năng tư duy, quản trị phần mềm và triển khai các 
+                phương pháp tra cứu thuật toán.
+            </p>
+            <p>
+                Tôi mong muốn được làm việc trong môi trường chuyên nghiệp để phát triển năng lực và đóng góp vào lĩnh vực 
+                <strong>IT</strong>.
+            </p>
+        </div>
+
+        <div class="experience">
+            <h2>KINH NGHIỆM</h2>
+
+            <div class="item">
+                <h4>Học sinh THPT</h4>
+                <div class="time">
+                    <span>2022 - 2025</span>
+                    <span>THPT Bến Lức</span>
+                </div>
+                <div class="des">
+                    Làm quen với tin học cơ bản và một số ứng dụng công nghệ.
                 </div>
             </div>
 
-            <div class="content-section active" id="profile">
-                <div class="section-block">
-                    <h2><i class="fas fa-bullseye"></i> GIỚI THIỆU BẢN THÂN</h2>
-                    <p>
-                        Tôi là **Kim Quỳnh**, sinh viên năm nhất ngành Công nghệ Thông tin với định hướng chuyên sâu về **Công nghệ Truyền thông Đa phương tiện**. 
-                        Tôi yêu thích công việc kết hợp giữa công nghệ và sáng tạo, đặc biệt là **thiết kế hình ảnh, dựng video** và xây dựng các sản phẩm truyền thông hiện đại.
-                    </p>
-                    <p>
-                        Với khả năng quan sát tốt, tôi **học nhanh** và luôn thích tìm tòi các công cụ mới, xu hướng thiết kế để phát triển bản thân. Mục tiêu của tôi là phát triển một **phong cách thiết kế độc đáo** và làm việc chuyên nghiệp trong lĩnh vực truyền thông đa phương tiện.
-                    </p>
+            <div class="item">
+                <h4>Sinh viên CNTT</h4>
+                <div class="time">
+                    <span>2025 - nay</span>
+                    <span>Đại học Hùng Vương TP.HCM</span>
                 </div>
-                <div class="section-block">
-                    <h2><i class="fas fa-user-tag"></i> MỤC TIÊU NGHỀ NGHIỆP</h2>
-                    <p>
-                        Mong muốn được làm việc trong môi trường sáng tạo, thử thách bản thân và học hỏi thêm nhiều kỹ năng để tạo ra những sản phẩm truyền thông chất lượng, góp phần xây dựng hình ảnh thương hiệu mạnh mẽ.
-                    </p>
+                <div class="des">
+                    Bắt đầu học lập trình, làm quen với các môn cơ sở ngành và nền lập trình viên.
                 </div>
             </div>
+        </div>
 
-            <div class="content-section" id="experience">
-                <div class="section-block">
-                    <h2><i class="fas fa-chart-line"></i> KINH NGHIỆM HOẠT ĐỘNG</h2>
-                    <div class="experience-item">
-                        <h3>Học sinh THPT</h3>
-                        <span class="date">2022 - 2025 | Trường THPT Phạm Văn Đồng</span>
-                        <ul>
-                            <li>Tham gia **câu lạc bộ truyền thông**, thiết kế poster và video cho các sự kiện của trường.</li>
-                            <li>Học cách sử dụng các công cụ thiết kế cơ bản như **Photoshop** và **Canva**.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Sinh viên CNTT (Định hướng Truyền thông Đa phương tiện)</h3>
-                        <span class="date">2025 - nay | Đại học Hùng Vương TP.HCM</span>
-                        <ul>
-                            <li>Học các môn cơ sở ngành về công nghệ thông tin, đặc biệt là về thiết kế truyền thông đa phương tiện.</li>
-                            <li>Tham gia các hoạt động và **dự án thiết kế** trong trường.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="section-block">
-                    <h2><i class="fas fa-star-half-alt"></i> DỰ ÁN TIÊU BIỂU</h2>
-                    <div class="experience-item">
-                        <h3>Thiết kế poster sự kiện</h3>
-                        <span class="date">2023 | Trường Đại học Hùng Vương TP.HCM</span>
-                        <ul>
-                            <li>Thiết kế nhiều poster cho các sự kiện trong trường.</li>
-                            <li>Sử dụng **Canva** để tạo ra sản phẩm nhanh chóng, dễ nhìn, và phù hợp với thương hiệu.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Dựng video cho CLB Truyền thông</h3>
-                        <span class="date">2023 | Câu lạc bộ truyền thông</span>
-                        <ul>
-                            <li>Dựng các **video ngắn quảng bá** cho các hoạt động của câu lạc bộ.</li>
-                            <li>Sử dụng **CapCut** và chỉnh sửa video phù hợp với các yêu cầu sáng tạo và xu hướng truyền thông.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="skills">
+            <h2>KỸ NĂNG</h2>
+            <ul>
+                <li>HTML, CSS, JavaScript</li>
+                <li>Bảo mật mạng cơ bản</li>
+                <li>Tư duy phân tích</li>
+                <li>Git & GitHub</li>
+                <li>Khả năng tự học nhanh</li>
+            </ul>
+        </div>
 
-            <div class="content-section" id="skills">
-                <div class="section-block">
-                    <h2><i class="fas fa-toolbox"></i> CÔNG CỤ & PHẦN MỀM</h2>
+        <div class="project">
+            <h2>DỰ ÁN</h2>
+
+            <div class="item">
+                <h4>Website Bán Hàng</h4>
+                <div class="time">2025</div>
+                <div class="web"><i class="fas fa-link"></i> www.dhv.edu.vn</div>
+                <div class="location"><i class="fas fa-code"></i> Phát triển ứng dụng</div>
+
+                <div class="des">
                     <ul>
-                        <li>**Thiết kế hình ảnh:** Adobe Photoshop (Cơ bản/Trung cấp), Canva (Thành thạo).</li>
-                        <li>**Dựng video:** CapCut, Adobe Premiere (Cơ bản).</li>
-                        <li>**Kiến thức nền tảng:** Kiến thức cơ bản về UI/UX và màu sắc, bố cục.</li>
-                    </ul>
-                </div>
-                <div class="section-block">
-                    <h2><i class="fas fa-hand-holding-heart"></i> KỸ NĂNG MỀM & TƯ DUY</h2>
-                    <ul>
-                        <li>**Tư duy hình ảnh và sáng tạo nội dung** (Visual Thinking & Content Creation).</li>
-                        <li>Khả năng **tự học nhanh**, khám phá công cụ và xu hướng thiết kế mới.</li>
-                        <li>Khả năng làm việc nhóm và giao tiếp hiệu quả trong môi trường dự án.</li>
+                        <li>Xây dựng giao diện người dùng.</li>
+                        <li>Sử dụng HTML, CSS, JavaScript.</li>
+                        <li>Thiết kế bố cục trực quan, dễ sử dụng.</li>
                     </ul>
                 </div>
             </div>
-
-            <div class="content-section" id="education">
-                <div class="section-block">
-                    <h2><i class="fas fa-university"></i> HỌC VẤN</h2>
-                    <div class="experience-item" style="box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);">
-                        <h3>Đại học Hùng Vương TP.HCM</h3>
-                        <span class="date">2025 – Hiện tại</span>
-                        <ul>
-                            <li>**Ngành:** Công nghệ Thông tin (Định hướng Công nghệ Truyền thông Đa phương tiện).</li>
-                            <li>**Kiến thức:** Tập trung vào Thiết kế Đồ họa, Dựng phim và Kỹ thuật Truyền thông.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item" style="box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);">
-                        <h3>Trường THPT Phạm Văn Đồng</h3>
-                        <span class="date">2022 – 2025</span>
-                        <ul>
-                            <li>Tốt nghiệp THPT.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <h2><i class="fas fa-id-card"></i> THÔNG TIN LIÊN HỆ</h2>
-                    <ul class="contact-list">
-                        <li><i class="fas fa-phone-alt"></i> **Phone:** 0387746140</li>
-                        <li><i class="fas fa-envelope"></i> **Email:** <a href="mailto:*****@dhv.edu.vn" style="color: var(--accent-moon);">*****@dhv.edu.vn</a></li>
-                        <li><i class="fas fa-globe"></i> **Website:** <a href="http://dhv.edu.vn" style="color: var(--accent-moon);">dhv.edu.vn</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> **Địa điểm:** HCMC - Việt Nam</li>
-                        <li><i class="fas fa-calendar-alt"></i> **Ngày sinh:** 08/09/2007</li>
-                    </ul>
-                </div>
-            </div>
-            
         </div>
     </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Logic cho Menu Tương tác
-    const menuItems = document.querySelectorAll('.menu-item');
-    const sections = document.querySelectorAll('.content-section');
-
-    function switchSection(targetId) {
-        // Cập nhật trạng thái Active của Menu
-        menuItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('data-target') === targetId) {
-                item.classList.add('active');
-            }
-        });
-
-        // Ẩn/Hiện Section
-        sections.forEach(section => {
-            section.classList.remove('active');
-            if (section.id === targetId) {
-                section.classList.add('active');
-            }
-        });
-    }
-
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const target = item.getAttribute('data-target');
-            switchSection(target);
-        });
-    });
-
-    // Kích hoạt section đầu tiên khi tải
-    switchSection('profile'); 
-});
-</script>
 </body>
 </html>
